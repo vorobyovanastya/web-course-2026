@@ -11,8 +11,8 @@ body {
   background-color: #f4f6f8;
   display: flex;
   flex-direction: column;
-  align-items: center;
   padding: 20px;
+  width: 100%;
 }
 
 /* Навигация */
@@ -43,7 +43,6 @@ body {
   align-items: center;
   background-color: #ffffff;
   width: 100%;
-  max-width: 800px;
   padding: 30px;
   border-radius: 8px;
   margin-bottom: 20px;
@@ -94,7 +93,6 @@ body {
   flex-direction: column;
   gap: 20px;
   width: 100%;
-  max-width: 800px;
 }
 
 .section {
@@ -104,6 +102,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  width: 100%;
 }
 
 .section-title {
@@ -149,7 +148,6 @@ body {
 .footer {
   background-color: #ffffff;
   width: 100%;
-  max-width: 800px;
   padding: 25px;
   border-radius: 8px;
   margin-top: 20px;
