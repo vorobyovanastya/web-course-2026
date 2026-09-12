@@ -72,7 +72,6 @@ img {
   align-items: center;
 }
 
-/* Логотип сделан полностью белым */
 .logo {
   font-weight: 800;
   font-size: 17px;
@@ -81,7 +80,7 @@ img {
 }
 
 .logo-accent {
-  color: #ffffff; /* Убрали розовый, теперь полностью белый */
+  color: #ffffff;
 }
 
 .menu-toggle {
@@ -152,7 +151,6 @@ img {
   gap: 15px;
 }
 
-/* Добавлен margin-top, чтобы плашка не липла к шапке */
 .hero-badge {
   display: inline-block;
   align-self: flex-start;
@@ -167,16 +165,15 @@ img {
   margin-top: 15px; 
 }
 
-/* Заголовок: Слово «ТУРТРОПА» тёмно-зелёное, «2026» — розовое */
 .hero-title {
   font-size: 38px;
   line-height: 1.1;
   font-weight: 900;
-  color: var(--primary); /* Тёмно-зелёный для слова ТУРТРОПА */
+  color: var(--primary);
 }
 
 .hero-title .highlight {
-  color: #F87185; /* Яркий розовый акцент для года 2026 */
+  color: #F87185;
   background-color: transparent;
   padding: 0;
 }
@@ -372,20 +369,22 @@ img {
 }
 
 .partner-tag {
-  background-color: var(--cream);
+  background-color: var(--accent-light);
+  border: 1px solid var(--accent);
   color: var(--primary);
   padding: 10px 20px;
   border-radius: 30px;
   font-weight: 700;
   font-size: 13px;
-  border: 1px solid var(--border-color);
-  transition: transform 0.2s ease, background-color 0.2s ease;
+  transition: all 0.2s ease;
+  cursor: default;
 }
 
 .partner-tag:hover {
-  transform: scale(1.08);
-  background-color: var(--accent);
-  color: var(--primary);
+  background-color: var(--primary);
+  color: var(--cream);
+  border-color: var(--primary);
+  transform: translateY(-2px);
 }
 
 /* --- Секция ФОРМА ОБРАТНОЙ СВЯЗИ --- */
