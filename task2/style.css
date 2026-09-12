@@ -16,7 +16,7 @@ html {
   --primary: #2D4A27;        /* Spruce (тёмно-зелёный хвойный) */
   --primary-hover: #22381E;  /* Более тёмный Spruce */
   --accent: #FCAEBB;         /* Piggy (розовый акцент) */
-  --accent-light: #FDE8ED;   /* Светло-розовый для фона карточек */
+  --accent-light: #FDE8ED;   /* Светло-розовый фон ячеек */
   --cream: #FFF7E6;          /* Cream (кремовый) */
   --bg-page: #FFFBF7;        /* Тёплый светлый фон */
   --bg-card: #ffffff;        /* Белый */
@@ -40,18 +40,11 @@ img {
   display: block;
 }
 
+/* Крупная структурная сетка страницы (Grid) */
 .page-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 45px;
-}
-
-.image-caption {
-  font-size: 12px;
-  color: var(--text-muted);
-  text-align: center;
-  margin-top: 6px;
-  font-style: italic;
 }
 
 /* --- Шапка и Навигация --- */
@@ -174,8 +167,6 @@ img {
 
 .hero-title .highlight {
   color: #F87185;
-  background-color: transparent;
-  padding: 0;
 }
 
 .hero-subtitle {
@@ -220,7 +211,7 @@ img {
   box-shadow: 0 8px 24px rgba(45, 74, 39, 0.12);
 }
 
-/* --- Секция О МЕРОПРИЯТИИ --- */
+/* --- Заголовки секций --- */
 .section-title {
   font-size: 24px;
   font-weight: 900;
@@ -232,6 +223,7 @@ img {
   padding-left: 10px;
 }
 
+/* --- Секция О МЕРОПРИЯТИИ --- */
 .about-section {
   display: flex;
   flex-direction: column;
@@ -355,7 +347,7 @@ img {
   transform: translateX(4px);
 }
 
-/* --- Секция ПАРТНЁРЫ --- */
+/* --- Секция ПАРТНЁРЫ (Стиль перелива из розового в зелёный) --- */
 .partners-subtitle {
   font-size: 14px;
   color: var(--text-muted);
@@ -387,7 +379,7 @@ img {
   transform: translateY(-2px);
 }
 
-/* --- Секция ФОРМА ОБРАТНОЙ СВЯЗИ --- */
+/* --- Секция ОБРАТНАЯ СВЯЗИ --- */
 .contact-section {
   background-color: var(--bg-card);
   padding: 28px 20px;
@@ -429,6 +421,12 @@ img {
   font-size: 15px;
   background-color: #fdfdfd;
   transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  font-family: inherit;
+}
+
+.form-group textarea {
+  resize: vertical; /* Запрещает изменение размера по ширине */
+  min-height: 110px;
 }
 
 .form-group input:hover,
