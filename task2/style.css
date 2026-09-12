@@ -11,7 +11,7 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Палитра: Piggy, Cream, Spruce */
+/* Палитра: Piggy (#FCAEBB), Cream (#FFF7E6), Spruce (#2D4A27) */
 :root {
   --primary: #2D4A27;        /* Spruce (тёмно-зелёный хвойный) */
   --primary-hover: #22381E;  /* Более тёмный Spruce */
@@ -54,7 +54,7 @@ img {
   font-style: italic;
 }
 
-/* --- Шапка и Гамбургер-меню (Flexbox) --- */
+/* --- Шапка и Навигация --- */
 .header {
   position: sticky;
   top: 0;
@@ -72,6 +72,7 @@ img {
   align-items: center;
 }
 
+/* Логотип сделан полностью белым */
 .logo {
   font-weight: 800;
   font-size: 17px;
@@ -80,7 +81,7 @@ img {
 }
 
 .logo-accent {
-  color: var(--accent);
+  color: #ffffff; /* Убрали розовый, теперь полностью белый */
 }
 
 .menu-toggle {
@@ -151,6 +152,7 @@ img {
   gap: 15px;
 }
 
+/* Добавлен margin-top, чтобы плашка не липла к шапке */
 .hero-badge {
   display: inline-block;
   align-self: flex-start;
@@ -162,20 +164,21 @@ img {
   border-radius: 20px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  margin-top: 15px; 
 }
 
+/* Заголовок: Слово «ТУРТРОПА» тёмно-зелёное, «2026» — розовое */
 .hero-title {
-  font-size: 34px;
+  font-size: 38px;
   line-height: 1.1;
   font-weight: 900;
-  color: var(--primary);
+  color: var(--primary); /* Тёмно-зелёный для слова ТУРТРОПА */
 }
 
 .hero-title .highlight {
-  color: var(--primary);
-  background-color: var(--accent);
-  padding: 0 8px;
-  border-radius: 6px;
+  color: #F87185; /* Яркий розовый акцент для года 2026 */
+  background-color: transparent;
+  padding: 0;
 }
 
 .hero-subtitle {
@@ -542,6 +545,10 @@ img {
     border: none;
     gap: 20px;
     background-color: transparent;
+  }
+
+  .hero-badge {
+    margin-top: 25px;
   }
 
   .hero-title {
