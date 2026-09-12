@@ -1,230 +1,209 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Туртропа ММФ БГУ 2026 | Главное событие первокурсников</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Видеоконкурс «Студенческий Взгляд»</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Шапка сайта (Flexbox) -->
-  <header class="header">
-    <div class="header-container">
-      <div class="logo">
-        <span class="logo-accent">ТУРТРОПА</span> ММФ 2026
-      </div>
-      
-      <!-- Чекбокс и иконка гамбургер-меню для мобилок -->
-      <input type="checkbox" id="menu-toggle" class="menu-toggle">
-      <label for="menu-toggle" class="hamburger" aria-label="Открыть меню">
-        <span></span>
-        <span></span>
-        <span></span>
-      </label>
-
-      <!-- Навигация -->
-      <nav class="nav">
-        <a href="#about" class="nav-link">О Туртропе</a>
-        <a href="#program" class="nav-link">Этапы</a>
-        <a href="#nominations" class="nav-link">Номинации</a>
-        <a href="#partners" class="nav-link">Партнёры</a>
-        <a href="#contact" class="nav-link">Регистрация</a>
-      </nav>
-    </div>
-  </header>
-
-  <!-- Главная структурная сетка на CSS Grid -->
   <div class="page-grid">
 
-    <!-- Главная секция (Hero) -->
-    <section class="hero-section">
-      <div class="hero-badge">Традиционное мероприятие ММФ БГУ</div>
-      <h1 class="hero-title">ТУРТРОПА <span class="highlight">2026</span></h1>
-      <p class="hero-subtitle">Сплочение, творчество и главное испытание для новоиспечённых первокурсников механико-математического факультета!</p>
+    <!-- Шапка с гамбургер-меню (без JS) -->
+    <header class="header">
+      <div class="header-container">
+        <div class="logo">Студенческий <span class="logo-accent">Взгляд</span></div>
+        <input type="checkbox" id="menu-toggle" class="menu-toggle">
+        <label for="menu-toggle" class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </label>
+        <nav class="nav">
+          <a href="#about" class="nav-link">О конкурсе</a>
+          <a href="#program" class="nav-link">Этапы</a>
+          <a href="#nominations" class="nav-link">Номинации</a>
+          <a href="#partners" class="nav-link">Партнёры</a>
+          <a href="#contact" class="nav-link">Заявка</a>
+        </nav>
+      </div>
+    </header>
 
+    <!-- Секция HERO -->
+    <section class="hero-section">
+      <span class="hero-badge">Ежегодный фестиваль</span>
+      <h1 class="hero-title">Твой кадр. <br>Твоя <span class="highlight">история</span>.</h1>
+      <p class="hero-subtitle">Главное видеособытие факультета: сними ролик, прояви себя и выиграй ценные призы!</p>
+      
       <div class="hero-info-bar">
         <div class="info-item">
-          <span class="info-label">Дата</span>
-          <span class="info-value">19 сентября 2026</span>
+          <span class="info-label">Дедлайн подачи</span>
+          <span class="info-value">25 октября</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Финал и показ</span>
+          <span class="info-value">10 ноября</span>
         </div>
         <div class="info-item">
           <span class="info-label">Локация</span>
-          <span class="info-value">Минский р-н, Ждановичи</span>
-        </div>
-        <div class="info-item">
-          <span class="info-label">Организатор</span>
-          <span class="info-value">Студоргкомитет ММФ</span>
+          <span class="info-value">Актовый зал</span>
         </div>
       </div>
 
-      <figure class="hero-image-wrapper">
-        <img src="hero-bg.jpg" alt="Главное фото Туртропы ММФ БГУ" class="hero-img">
-        <figcaption class="image-caption">Атмосфера традиционного выезда первокурсников ММФ</figcaption>
+      <figure>
+        <img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=1200&q=80" alt="Съемки видеоролика" class="hero-img">
+        <figcaption class="image-caption">Создавай атмосферный контент вместе с нами</figcaption>
       </figure>
     </section>
 
-    <!-- Секция «О мероприятии» -->
+    <!-- Секция О МЕРОПРИЯТИИ -->
     <section id="about" class="about-section">
-      <div class="about-text-block">
-        <h2 class="section-title">О МЕРОПРИЯТИИ</h2>
-        <p class="about-description">
-          «Туртропа» — это ежегодное традиционное мероприятие механико-математического факультета БГУ, направленное на знакомство и сплочение первокурсников. Участникам предстоит проявить себя в творчестве, обустроить лагерь, удивить жюри кулинарными шедеврами на костре и пройти экстремальную тропу с заданиями!
-        </p>
-
-        <!-- Статистика на CSS Grid -->
+      <div>
+        <h2 class="section-title">О конкурсе</h2>
+        <p class="about-description">«Студенческий Взгляд» — это площадка для креативных студентов, мечтающих заявить о себе через видеоискусство. Неважно, снимаешь ли ты на профессиональную камеру или на смартфон — главное идеи и эмоции.</p>
+        
         <div class="stats-grid">
           <div class="stat-card">
-            <span class="stat-number">300+</span>
-            <span class="stat-label">Участников оффлайн</span>
+            <span class="stat-number">15+</span>
+            <span class="stat-label">Команд-участников</span>
           </div>
           <div class="stat-card">
-            <span class="stat-number">30k+</span>
-            <span class="stat-label">Зрителей трансляции</span>
+            <span class="stat-number">4</span>
+            <span class="stat-label">Главных номинации</span>
           </div>
           <div class="stat-card">
-            <span class="stat-number">5000+</span>
-            <span class="stat-label">Мероприятий от СОК</span>
+            <span class="stat-number">100k</span>
+            <span class="stat-label">Призовой фонд</span>
           </div>
         </div>
       </div>
 
-      <figure class="about-image-wrapper">
-        <img src="about.jpg" alt="Команда первокурсников ММФ" class="about-img">
-        <figcaption class="image-caption">Командный дух и поддержка одногруппников</figcaption>
+      <figure>
+        <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80" alt="Командная работа над проектом" class="about-img">
+        <figcaption class="image-caption">Работа над конкурсным проектом в команде</figcaption>
       </figure>
     </section>
 
-    <!-- Секция «Этапы конкурса» (Сетка карточек с фото) -->
-    <section id="program" class="program-section">
-      <h2 class="section-title">ЧТО ЖДЁТ КОМАНДЫ?</h2>
+    <!-- Секция ЭТАПЫ (CSS Grid) -->
+    <section id="program">
+      <h2 class="section-title">Этапы проведения</h2>
       <div class="program-grid">
-        
         <article class="program-card">
           <div class="card-image-box">
-            <img src="creative.jpg" alt="Творческий номер на Туртропе">
+            <img src="https://images.unsplash.com/photo-1512758017271-d7b84c2113f1?auto=format&fit=crop&w=600&q=80" alt="Регистрация">
           </div>
           <div class="card-content">
-            <span class="card-step">Этап 01</span>
-            <h3 class="card-title">Творческие номера</h3>
-            <p class="card-text">Каждая группа готовит яркое выступление по своей тематике, раскрывающее актерские и музыкальные таланты.</p>
+            <span class="card-step">Этап 1</span>
+            <h3 class="card-title">Регистрация</h3>
+            <p class="card-text">Заполни форму на сайте, укажи состав команды и выбранную номинацию.</p>
           </div>
         </article>
 
         <article class="program-card">
           <div class="card-image-box">
-            <img src="camp.jpg" alt="Строительство лагеря">
+            <img src="https://images.unsplash.com/photo-1536240478700-b869070f9279?auto=format&fit=crop&w=600&q=80" alt="Съёмка и монтаж">
           </div>
           <div class="card-content">
-            <span class="card-step">Этап 02</span>
-            <h3 class="card-title">Обустройство лагеря</h3>
-            <p class="card-text">Строительство и оригинальное оформление стоянки группы с соблюдением выбранного тематического стиля.</p>
+            <span class="card-step">Этап 2</span>
+            <h3 class="card-title">Съёмка и монтаж</h3>
+            <p class="card-text">Создай видеоролик длительностью до 3 минут на актуальную тему.</p>
           </div>
         </article>
 
         <article class="program-card">
           <div class="card-image-box">
-            <img src="cooking.jpg" alt="Приготовление блюда на костре">
+            <img src="https://images.unsplash.com/photo-1585829365295-ab7cd400c167?auto=format&fit=crop&w=600&q=80" alt="Отбор жюри">
           </div>
           <div class="card-content">
-            <span class="card-step">Этап 03</span>
-            <h3 class="card-title">Кулинарный баттл</h3>
-            <p class="card-text">Приготовление уникального блюда в полевых условиях для строгой, но справедливой судейской коллегии.</p>
+            <span class="card-step">Этап 3</span>
+            <h3 class="card-title">Оценка жюри</h3>
+            <p class="card-text">Экспертная коллегия определяет финалистов и шорт-лист номинаций.</p>
           </div>
         </article>
 
         <article class="program-card">
           <div class="card-image-box">
-            <img src="trail.jpg" alt="Прохождение туртропы">
+            <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=600&q=80" alt="Гала-показ">
           </div>
           <div class="card-content">
-            <span class="card-step">Этап 04</span>
-            <h3 class="card-title">Туристическая тропа</h3>
-            <p class="card-text">Прохождение полосы препятствий и интеллектуально-спортивных испытаний от организаторов.</p>
+            <span class="card-step">Этап 4</span>
+            <h3 class="card-title">Гала-показ</h3>
+            <p class="card-text">Большой просмотр работ на экране и награждение победителей.</p>
           </div>
         </article>
-
       </div>
     </section>
 
-    <!-- Секция «Номинации» -->
-    <section id="nominations" class="nominations-section">
-      <h2 class="section-title">НОМИНАЦИИ И НАГРАДЫ</h2>
+    <!-- Секция НОМИНАЦИИ (без эмодзи) -->
+    <section id="nominations">
+      <h2 class="section-title">Номинации и награды</h2>
       <div class="nominations-grid">
-        <div class="nomination-badge">🏆 Победитель Туртропы ММФ</div>
-        <div class="nomination-badge">🎭 Лучший творческий номер</div>
-        <div class="nomination-badge">⛺ Лучший лагерь</div>
-        <div class="nomination-badge">🍳 Лучшее блюдо</div>
-        <div class="nomination-badge">🌲 Лучшее прохождение Туртропы</div>
-        <div class="nomination-badge">🎬 Лучшая редактура</div>
-        <div class="nomination-badge">⭐ Лучшая мужская / женская роль</div>
-        <div class="nomination-badge">🥇 1, 2 и 3 место в общем зачете</div>
+        <div class="nomination-badge">Лучший видеопроект</div>
+        <div class="nomination-badge">Приз зрительских симпатий</div>
+        <div class="nomination-badge">Оригинальный сценарий</div>
+        <div class="nomination-badge">Лучший монтаж и спецэффекты</div>
       </div>
     </section>
 
-    <!-- Секция «Партнёры» -->
-    <section id="partners" class="partners-section">
-      <h2 class="section-title">НАШИ ПАРТНЁРЫ</h2>
-      <p class="partners-subtitle">Студенческий оргкомитет ММФ сотрудничает с ведущими брендами:</p>
+    <!-- Секция ПАРТНЁРЫ (Flexbox) -->
+    <section id="partners">
+      <h2 class="section-title">Партнёры мероприятия</h2>
+      <p class="partners-subtitle">Проект поддерживают ведущие студии и студенческие организации:</p>
       <div class="partners-flex">
-        <span class="partner-tag">МТС</span>
-        <span class="partner-tag">RedBull</span>
-        <span class="partner-tag">Domino's Pizza</span>
-        <span class="partner-tag">Coca-Cola</span>
-        <span class="partner-tag">ROCS</span>
-        <span class="partner-tag">Luxvisage</span>
-        <span class="partner-tag">Коммунарка</span>
-        <span class="partner-tag">ФК Динамо-Минск</span>
-        <span class="partner-tag">EY</span>
-        <span class="partner-tag">Hell Energy</span>
+        <div class="partner-tag">Студенческий Союз</div>
+        <div class="partner-tag">Media Lab</div>
+        <div class="partner-tag">Figma Community</div>
+        <div class="partner-tag">SMM Studio</div>
+        <div class="partner-tag">Университет ТВ</div>
       </div>
     </section>
 
-    <!-- Форма обратной связи (Mobile-First Form) -->
+    <!-- Секция ФОРМА ОБРАТНОЙ СВЯЗИ -->
     <section id="contact" class="contact-section">
-      <h2 class="section-title">РЕГИСТРАЦИЯ И СВЯЗЬ</h2>
-      <p class="contact-desc">Есть вопросы по участию или хочешь связаться с оргкомитетом? Заполни форму ниже:</p>
+      <h2 class="section-title">Подать заявку</h2>
+      <p class="contact-desc">Заполни форму, чтобы зарегистрировать свою команду на участие в конкурсе:</p>
       
-      <form class="contact-form">
+      <form class="contact-form" action="#" method="post">
         <div class="form-group">
-          <label for="name">Ваше имя и фамилия</label>
-          <input type="text" id="name" placeholder="Иван Иванов" required>
+          <label for="fullname">ФИО капитана</label>
+          <input type="text" id="fullname" name="fullname" placeholder="Иванов Иван Иванович" required>
         </div>
 
         <div class="form-group">
           <label for="email">Электронная почта</label>
-          <input type="email" id="email" placeholder="student@bsu.by" required>
+          <input type="email" id="email" name="email" placeholder="example@mail.ru" required>
         </div>
 
         <div class="form-group">
-          <label for="group">Номер группы / Статус</label>
-          <input type="text" id="group" placeholder="например, 1 курс, 4 группа" required>
+          <label for="group">Академическая группа</label>
+          <input type="text" id="group" name="group" placeholder="Например: 22-ИТ" required>
         </div>
 
         <div class="form-group">
-          <label for="message">Ваш вопрос или сообщение</label>
-          <textarea id="message" rows="4" placeholder="Задайте вопрос оргкомитету..." required></textarea>
+          <label for="message">Описание идеи ролика</label>
+          <textarea id="message" name="message" rows="4" placeholder="Коротко расскажи о задумке вашей команды..."></textarea>
         </div>
 
-        <button type="submit" class="submit-btn">ОТПРАВИТЬ ЗАЯВКУ</button>
+        <button type="submit" class="submit-btn">Отправить заявку</button>
       </form>
     </section>
 
-    <!-- Футер -->
+    <!-- Подвал -->
     <footer class="footer">
       <div class="footer-content">
         <div class="footer-info">
-          <h3>Студоргкомитет ММФ БГУ</h3>
-          <p>Создаем лучшие студенческие события с любовью!</p>
+          <h3>Студенческий Взгляд</h3>
+          <p>Ежегодный конкурс видеороликов</p>
         </div>
         <div class="footer-socials">
-          <a href="https://vk.com/mmfbsu" target="_blank" rel="noopener noreferrer" class="social-link">ВКонтакте</a>
-          <a href="https://instagram.com/mmf_bsu" target="_blank" rel="noopener noreferrer" class="social-link">Instagram</a>
-          <a href="https://www.tiktok.com/@ss_mmf" target="_blank" rel="noopener noreferrer" class="social-link">TikTok</a>
+          <a href="#" class="social-link">VKontakte</a>
+          <a href="#" class="social-link">Telegram</a>
+          <a href="#" class="social-link">YouTube</a>
         </div>
       </div>
       <div class="footer-bottom">
-        <p>© 2026 Механико-математический факультет БГУ. Все права защищены.</p>
+        &copy; 2026 Студенческий Союз. Все права защищены.
       </div>
     </footer>
 
