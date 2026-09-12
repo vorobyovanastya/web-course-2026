@@ -1,7 +1,7 @@
 /* ==========================================================================
-   1. БАЗОВЫЕ СТИЛИ (MOBILE FIRST - До 767px)
+   1. СБРОС СТИЛЕЙ И БАЗОВЫЕ НАСТРОЙКИ
    ========================================================================== */
-* {
+*, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -9,29 +9,14 @@
 
 html {
   scroll-behavior: smooth;
-}
-
-/* Палитра: Piggy (#FCAEBB), Cream (#FFF7E6), Spruce (#2D4A27) */
-:root {
-  --primary: #2D4A27;        /* Spruce (тёмно-зелёный хвойный) */
-  --primary-hover: #22381E;  /* Более тёмный Spruce */
-  --accent: #FCAEBB;         /* Piggy (розовый акцент) */
-  --accent-light: #FDE8ED;   /* Светло-розовый фон ячеек */
-  --cream: #FFF7E6;          /* Cream (кремовый) */
-  --bg-page: #FFFBF7;        /* Тёплый светлый фон */
-  --bg-card: #ffffff;        /* Белый */
-  --text-main: #1D2E19;      /* Текст цвета еловой хвои */
-  --text-muted: #596B55;     /* Приглушённый зелёный */
-  --border-color: #E8E0D5;   /* Границы */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: #f4f6f4;
+  color: #1c2e21;
 }
 
 body {
-  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  color: var(--text-main);
-  background-color: var(--bg-page);
-  line-height: 1.6;
+  line-height: 1.5;
   padding: 12px;
-  overflow-x: hidden;
 }
 
 img {
@@ -40,149 +25,180 @@ img {
   display: block;
 }
 
-/* Крупная структурная сетка страницы (Grid) */
-.page-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 45px;
-}
-
-/* --- Шапка и Навигация --- */
+/* ==========================================================================
+   2. ШАПКА И МОБИЛЬНОЕ МЕНЮ (FLEXBOX)
+   ========================================================================== */
 .header {
   position: sticky;
-  top: 0;
-  background-color: rgba(45, 74, 39, 0.95);
-  backdrop-filter: blur(8px);
+  top: 12px;
   z-index: 1000;
-  padding: 12px 18px;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(45, 74, 39, 0.15);
+  margin-bottom: 20px;
 }
 
 .header-container {
+  background-color: #2b4c38; /* Темно-зеленый фирменный цвет */
+  border-radius: 16px;
+  padding: 14px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  position: relative;
 }
 
 .logo {
-  font-weight: 800;
-  font-size: 17px;
-  letter-spacing: 0.5px;
   color: #ffffff;
+  font-weight: 800;
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
 }
 
 .logo-accent {
-  color: #ffffff;
+  color: #ff9ebb; /* Розовый акцент */
 }
 
+/* Прячем чекбокс открытия меню */
 .menu-toggle {
   display: none;
 }
 
+/* Компактная и аккуратная иконка гамбургер-меню */
 .hamburger {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 32px;
-  height: 24px;
+  width: 22px;        /* Компактная ширина */
+  height: 15px;       /* Уменьшенная высота — полоски расположены близко */
   cursor: pointer;
-  padding: 2px;
-  min-height: 44px;
-  min-width: 44px;
-  align-items: center;
+  z-index: 1001;
 }
 
 .hamburger span {
   display: block;
-  height: 3px;
-  width: 28px;
-  background-color: var(--accent);
+  width: 100%;
+  height: 2px;        /* Аккуратная тонкая линия */
+  background-color: #ff9ebb; /* Розовый цвет полосок */
   border-radius: 2px;
   transition: all 0.3s ease;
 }
 
+/* Выпадающее мобильное меню */
 .nav {
   display: none;
-  flex-direction: column;
   position: absolute;
-  top: 100%;
+  top: calc(100% + 8px);
   left: 0;
-  width: 100%;
-  background-color: var(--primary);
-  padding: 20px;
-  border-radius: 0 0 12px 12px;
-  border-top: 2px solid var(--accent);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-  gap: 10px;
+  right: 0;
+  background-color: #2b4c38;
+  border-radius: 16px;
+  padding: 16px;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
+.nav-link {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ff9ebb;
+}
+
+/* Показ меню при клике на гамбургер */
 .menu-toggle:checked ~ .nav {
   display: flex;
 }
 
-.nav-link {
-  text-decoration: none;
-  color: #ffffff;
-  font-weight: 600;
-  font-size: 15px;
-  padding: 10px 0;
-  min-height: 44px;
-  display: flex;
-  align-items: center;
-  transition: color 0.2s ease;
+.menu-toggle:checked ~ .hamburger span:nth-child(1) {
+  transform: translateY(6.5px) rotate(45deg);
 }
 
-.nav-link:hover {
-  color: var(--accent);
+.menu-toggle:checked ~ .hamburger span:nth-child(2) {
+  opacity: 0;
 }
 
-/* --- Секция HERO --- */
+.menu-toggle:checked ~ .hamburger span:nth-child(3) {
+  transform: translateY(-6.5px) rotate(-45deg);
+}
+
+/* ==========================================================================
+   3. ГЛАВНАЯ СЕТКА СТРАНИЦЫ (CSS GRID)
+   ========================================================================== */
+.page-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+.section-title {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #2b4c38;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.image-caption {
+  font-size: 0.8rem;
+  color: #666;
+  text-align: center;
+  margin-top: 6px;
+  font-style: italic;
+}
+
+/* ==========================================================================
+   4. СЕКЦИЯ HERO (ГЛАВНАЯ)
+   ========================================================================== */
 .hero-section {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 14px;
 }
 
 .hero-badge {
-  display: inline-block;
   align-self: flex-start;
-  background-color: var(--accent);
-  color: var(--primary);
+  background-color: #ffcbd8;
+  color: #a8244f;
+  font-size: 0.75rem;
+  font-weight: 700;
   padding: 6px 14px;
-  font-size: 12px;
-  font-weight: 800;
   border-radius: 20px;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-top: 15px; 
 }
 
 .hero-title {
-  font-size: 38px;
-  line-height: 1.1;
+  font-size: 2.2rem;
   font-weight: 900;
-  color: var(--primary);
+  color: #2b4c38;
+  line-height: 1.1;
 }
 
 .hero-title .highlight {
-  color: #F87185;
+  color: #ff527b;
 }
 
 .hero-subtitle {
-  font-size: 15px;
-  color: var(--text-muted);
+  font-size: 0.95rem;
+  color: #444;
 }
 
 .hero-info-bar {
+  background-color: #2b4c38;
+  color: #ffffff;
+  border-radius: 16px;
+  padding: 16px;
   display: grid;
   grid-template-columns: 1fr;
   gap: 12px;
-  background-color: var(--primary);
-  color: #ffffff;
-  padding: 18px;
-  border-radius: 12px;
-  border-left: 5px solid var(--accent);
 }
 
 .info-item {
@@ -191,395 +207,333 @@ img {
 }
 
 .info-label {
-  font-size: 11px;
+  font-size: 0.7rem;
   text-transform: uppercase;
-  color: var(--cream);
-  font-weight: 600;
+  color: #ff9ebb;
+  font-weight: 700;
 }
 
 .info-value {
-  font-size: 15px;
   font-weight: 700;
-  color: #ffffff;
+  font-size: 0.95rem;
+}
+
+.hero-image-wrapper {
+  border-radius: 16px;
+  overflow: hidden;
 }
 
 .hero-img {
   width: 100%;
-  height: 260px;
-  object-fit: cover;
   border-radius: 16px;
-  box-shadow: 0 8px 24px rgba(45, 74, 39, 0.12);
+  object-fit: cover;
 }
 
-/* --- Заголовки секций --- */
-.section-title {
-  font-size: 24px;
-  font-weight: 900;
-  color: var(--primary);
-  margin-bottom: 15px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  border-left: 4px solid var(--accent);
-  padding-left: 10px;
-}
-
-/* --- Секция О МЕРОПРИЯТИИ --- */
+/* ==========================================================================
+   5. СЕКЦИЯ «О МЕРОПРИЯТИИ» И СТАТИСТИКА
+   ========================================================================== */
 .about-section {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 16px;
 }
 
 .about-description {
-  color: var(--text-main);
-  font-size: 15px;
-  margin-bottom: 20px;
+  font-size: 0.95rem;
+  color: #333;
+  margin-bottom: 16px;
 }
 
 .stats-grid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 12px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
 }
 
 .stat-card {
-  background-color: var(--cream);
-  padding: 18px;
+  background-color: #ffffff;
+  border: 1px solid #e0e8e2;
   border-radius: 12px;
-  border: 1px solid var(--border-color);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+  padding: 12px 8px;
+  text-align: center;
 }
 
 .stat-number {
-  font-size: 28px;
-  font-weight: 900;
-  color: var(--primary);
   display: block;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #2b4c38;
 }
 
 .stat-label {
-  font-size: 13px;
-  color: var(--text-muted);
-  font-weight: 600;
+  font-size: 0.65rem;
+  color: #666;
+  line-height: 1.2;
+  display: block;
+  margin-top: 2px;
+}
+
+.about-image-wrapper {
+  border-radius: 16px;
+  overflow: hidden;
 }
 
 .about-img {
   width: 100%;
-  height: 250px;
-  object-fit: cover;
   border-radius: 16px;
+  object-fit: cover;
 }
 
-/* --- Секция ЭТАПЫ КОНКУРСА --- */
+/* ==========================================================================
+   6. СЕКЦИЯ «ЭТАПЫ КОНКУРСА»
+   ========================================================================== */
 .program-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 20px;
+  gap: 16px;
 }
 
 .program-card {
-  background-color: var(--bg-card);
+  background-color: #ffffff;
   border-radius: 16px;
   overflow: hidden;
-  border: 1px solid var(--border-color);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e2e8e3;
 }
 
-.program-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 24px rgba(45, 74, 39, 0.12);
+.card-image-box {
+  height: 160px;
+  overflow: hidden;
 }
 
 .card-image-box img {
   width: 100%;
-  height: 190px;
+  height: 100%;
   object-fit: cover;
 }
 
 .card-content {
-  padding: 18px;
+  padding: 14px;
 }
 
 .card-step {
-  font-size: 11px;
-  font-weight: 800;
-  color: var(--primary);
-  background-color: var(--accent-light);
-  padding: 3px 8px;
-  border-radius: 6px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #ff527b;
   text-transform: uppercase;
 }
 
 .card-title {
-  font-size: 19px;
-  color: var(--primary);
-  margin: 8px 0;
-  font-weight: 800;
+  font-size: 1.1rem;
+  color: #2b4c38;
+  margin: 2px 0 6px 0;
 }
 
 .card-text {
-  font-size: 13px;
-  color: var(--text-muted);
+  font-size: 0.85rem;
+  color: #555;
 }
 
-/* --- Секция НОМИНАЦИИ --- */
+/* ==========================================================================
+   7. СЕКЦИЯ «НОМИНАЦИИ»
+   ========================================================================== */
 .nominations-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
 .nomination-badge {
-  background-color: var(--accent-light);
-  border: 1px solid var(--accent);
-  padding: 16px;
-  border-radius: 12px;
-  font-weight: 700;
-  font-size: 14px;
-  color: var(--primary);
-  transition: all 0.2s ease;
+  background-color: #2b4c38;
+  color: #ffffff;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 20px;
 }
 
-.nomination-badge:hover {
-  background-color: var(--primary);
-  color: var(--cream);
-  border-color: var(--primary);
-  transform: translateX(4px);
-}
-
-/* --- Секция ПАРТНЁРЫ (Стиль перелива из розового в зелёный) --- */
+/* ==========================================================================
+   8. СЕКЦИЯ «ПАРТНЁРЫ»
+   ========================================================================== */
 .partners-subtitle {
-  font-size: 14px;
-  color: var(--text-muted);
-  margin-bottom: 15px;
+  font-size: 0.85rem;
+  color: #555;
+  margin-bottom: 12px;
 }
 
 .partners-flex {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 8px;
 }
 
 .partner-tag {
-  background-color: var(--accent-light);
-  border: 1px solid var(--accent);
-  color: var(--primary);
-  padding: 10px 20px;
-  border-radius: 30px;
+  background-color: #ffffff;
+  border: 1px solid #2b4c38;
+  color: #2b4c38;
   font-weight: 700;
-  font-size: 13px;
-  transition: all 0.2s ease;
-  cursor: default;
+  font-size: 0.8rem;
+  padding: 8px 12px;
+  border-radius: 12px;
 }
 
-.partner-tag:hover {
-  background-color: var(--primary);
-  color: var(--cream);
-  border-color: var(--primary);
-  transform: translateY(-2px);
-}
-
-/* --- Секция ОБРАТНАЯ СВЯЗИ --- */
+/* ==========================================================================
+   9. ФОРМА ОБРАТНОЙ СВЯЗИ (MOBILE-FIRST)
+   ========================================================================== */
 .contact-section {
-  background-color: var(--bg-card);
-  padding: 28px 20px;
+  background-color: #ffffff;
+  padding: 18px;
   border-radius: 16px;
-  border: 1px solid var(--border-color);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+  border: 1px solid #e0e8e2;
 }
 
 .contact-desc {
-  font-size: 14px;
-  color: var(--text-muted);
-  margin-bottom: 20px;
+  font-size: 0.85rem;
+  color: #555;
+  margin-bottom: 16px;
 }
 
 .contact-form {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 12px;
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
 }
 
 .form-group label {
-  font-size: 13px;
+  font-size: 0.75rem;
   font-weight: 700;
-  color: var(--primary);
+  color: #2b4c38;
 }
 
 .form-group input,
 .form-group textarea {
   width: 100%;
-  padding: 14px;
-  border: 1.5px solid var(--border-color);
-  border-radius: 10px;
-  font-size: 15px;
-  background-color: #fdfdfd;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 0.9rem;
   font-family: inherit;
-}
-
-.form-group textarea {
-  resize: vertical; /* Запрещает изменение размера по ширине */
-  min-height: 110px;
-}
-
-.form-group input:hover,
-.form-group textarea:hover {
-  border-color: var(--accent);
+  background-color: #fafafa;
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
   outline: none;
+  border-color: #2b4c38;
   background-color: #ffffff;
-  border-color: var(--primary);
-  box-shadow: 0 0 0 4px rgba(252, 174, 187, 0.4);
+}
+
+/* Запрет изменения размеров текстового поля */
+.form-group textarea {
+  resize: none;
 }
 
 .submit-btn {
-  padding: 16px;
-  background-color: var(--primary);
+  background-color: #ff527b;
   color: #ffffff;
   border: none;
+  padding: 12px;
   border-radius: 10px;
-  font-weight: 700;
-  font-size: 16px;
-  letter-spacing: 0.5px;
+  font-weight: 800;
+  font-size: 0.9rem;
   cursor: pointer;
-  min-height: 48px;
-  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  margin-top: 4px;
+  transition: background-color 0.2s ease;
 }
 
 .submit-btn:hover {
-  background-color: var(--primary-hover);
-  box-shadow: 0 6px 18px rgba(45, 74, 39, 0.25);
+  background-color: #e04368;
 }
 
-.submit-btn:active {
-  transform: scale(0.98);
-}
-
-/* --- Футер --- */
+/* ==========================================================================
+   10. ФУТЕР
+   ========================================================================== */
 .footer {
-  background-color: var(--primary);
+  background-color: #2b4c38;
   color: #ffffff;
-  padding: 35px 22px 22px;
   border-radius: 16px;
-  margin-top: 20px;
+  padding: 20px;
+  margin-top: 10px;
 }
 
 .footer-content {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  margin-bottom: 25px;
+  gap: 16px;
+  margin-bottom: 16px;
 }
 
 .footer-info h3 {
-  font-size: 17px;
-  color: var(--accent);
-  margin-bottom: 5px;
+  font-size: 1rem;
+  color: #ff9ebb;
 }
 
 .footer-info p {
-  font-size: 13px;
-  color: var(--cream);
+  font-size: 0.8rem;
+  opacity: 0.8;
 }
 
 .footer-socials {
   display: flex;
-  gap: 15px;
+  gap: 12px;
 }
 
 .social-link {
-  color: var(--accent);
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 14px;
-  transition: color 0.2s ease;
-  min-height: 44px;
-  display: flex;
-  align-items: center;
-}
-
-.social-link:hover {
   color: #ffffff;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-bottom: 1px underline #ff9ebb;
 }
 
 .footer-bottom {
   border-top: 1px solid rgba(255, 255, 255, 0.15);
-  padding-top: 18px;
+  padding-top: 12px;
+  font-size: 0.7rem;
+  opacity: 0.6;
   text-align: center;
-  font-size: 12px;
-  color: var(--cream);
 }
 
 /* ==========================================================================
-   2. ПЛАНШЕТНАЯ ВЁРСТКА (@media min-width: 768px)
+   11. АДАПТИВНОСТЬ ДЛЯ ПЛАНШЕТОВ И ПК (DESKTOP BREAKPOINTS)
    ========================================================================== */
 @media (min-width: 768px) {
   body {
-    padding: 20px 30px;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px;
   }
 
-  .hamburger {
-    display: none;
+  .hamburger, .menu-toggle {
+    display: none; /* Скрываем гамбургер на больших экранах */
   }
 
   .nav {
     display: flex;
     position: static;
     flex-direction: row;
-    width: auto;
-    box-shadow: none;
-    padding: 0;
-    border: none;
-    gap: 20px;
     background-color: transparent;
-  }
-
-  .hero-badge {
-    margin-top: 25px;
-  }
-
-  .hero-title {
-    font-size: 48px;
+    padding: 0;
+    box-shadow: none;
   }
 
   .hero-info-bar {
     grid-template-columns: repeat(3, 1fr);
   }
 
-  .hero-img {
-    height: 380px;
-  }
-
   .about-section {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 30px;
     align-items: center;
   }
 
-  .about-img {
-    height: 340px;
-  }
-
-  .stats-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
   .program-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .nominations-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 
@@ -587,48 +541,5 @@ img {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-  }
-}
-
-/* ==========================================================================
-   3. ДЕСКТОПНАЯ ВЁРСТКА (@media min-width: 1200px)
-   ========================================================================== */
-@media (min-width: 1200px) {
-  body {
-    max-width: 1240px;
-    margin: 0 auto;
-    padding: 30px 40px;
-  }
-
-  .page-grid {
-    gap: 60px;
-  }
-
-  .hero-title {
-    font-size: 60px;
-  }
-
-  .hero-subtitle {
-    font-size: 18px;
-    max-width: 800px;
-  }
-
-  .hero-img {
-    height: 480px;
-  }
-
-  .program-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-  .nominations-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-  .contact-section {
-    padding: 40px;
-    max-width: 800px;
-    margin: 0 auto;
-    width: 100%;
   }
 }
