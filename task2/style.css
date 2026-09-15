@@ -164,6 +164,15 @@ img {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  position: relative;
+  padding: 30px 20px;
+  border-radius: 20px;
+  overflow: hidden;
+  background-image: 
+    linear-gradient(to bottom, rgba(244, 246, 244, 0.45) 0%, rgba(244, 246, 244, 0.95) 75%, #f4f6f4 100%),
+    url('hero-bg.jpg');
+  background-size: cover;
+  background-position: center top;
 }
 
 .hero-badge {
@@ -192,11 +201,13 @@ img {
 
 .hero-subtitle {
   font-size: 1rem;
-  color: #333333;
+  color: #1c2e21;
+  font-weight: 500;
 }
 
 .hero-info-bar {
-  background-color: #2b4c38;
+  background-color: rgba(43, 76, 56, 0.95);
+  backdrop-filter: blur(4px);
   color: #ffffff;
   border-radius: 16px;
   padding: 20px;
@@ -224,21 +235,7 @@ img {
 }
 
 .hero-image-wrapper {
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-}
-
-.hero-img {
-  width: 100%;
-  max-height: 600px;
-  border-radius: 20px;
-  object-fit: cover;
-  transition: transform 0.5s ease;
-}
-
-.hero-image-wrapper:hover .hero-img {
-  transform: scale(1.02);
+  display: none;
 }
 
 .about-section {
@@ -419,22 +416,27 @@ img {
 
 .contact-section {
   background-color: #ffffff;
-  padding: 24px;
+  padding: 28px 24px;
   border-radius: 20px;
   border: 1px solid #e0e8e2;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .contact-desc {
   font-size: 0.9rem;
   color: #555555;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 
 .contact-form {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  text-align: left;
 }
 
 .form-group {
@@ -494,6 +496,7 @@ img {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
   transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
 }
 
@@ -597,6 +600,10 @@ img {
     font-size: 2.2rem;
   }
 
+  .hero-section {
+    padding: 40px 32px;
+  }
+
   .hero-title {
     font-size: 3.2rem;
   }
@@ -618,7 +625,7 @@ img {
   }
 
   .contact-section {
-    padding: 32px;
+    padding: 36px 32px;
   }
 
   .footer-content {
@@ -637,6 +644,10 @@ img {
     font-size: 2.6rem;
   }
 
+  .hero-section {
+    padding: 60px 48px;
+  }
+
   .hero-title {
     font-size: 3.8rem;
   }
@@ -651,17 +662,12 @@ img {
   }
 
   .contact-section {
-    padding: 40px;
+    padding: 40px 36px;
   }
 
   .contact-form {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-  }
-
-  .form-group:nth-child(4),
-  .submit-btn {
-    grid-column: span 2;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
   }
 }
