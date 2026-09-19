@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Университетский Трекер Задач — ММФ</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="app-container">
+    
+    <!-- Шапка -->
+    <header class="app-header">
+      <div class="user-info">
+        <span class="greeting">Учёба & Лабораторные 🎓</span>
+        <h1 class="app-title">ММФ БГУ Task Tracker</h1>
+      </div>
+    </header>
+
+    <!-- Карточки-Фильтры и Статистика -->
+    <section class="stats-grid">
+      <button class="stat-card filter-btn active" data-filter="all" style="--card-bg: #AB9DFF; --card-color: #ffffff;">
+        <div class="stat-header">
+          <span class="stat-label">Все задачи</span>
+          <span class="stat-icon">📚</span>
+        </div>
+        <div class="stat-value" id="count-total">0</div>
+      </button>
+
+      <button class="stat-card filter-btn" data-filter="active" style="--card-bg: #E3FC87; --card-color: #1c2e21;">
+        <div class="stat-header">
+          <span class="stat-label">В процессе</span>
+          <span class="stat-icon">⏳</span>
+        </div>
+        <div class="stat-value" id="count-active">0</div>
+      </button>
+
+      <button class="stat-card filter-btn" data-filter="completed" style="--card-bg: #FFB2F7; --card-color: #253A82;">
+        <div class="stat-header">
+          <span class="stat-label">Сдано / Готово</span>
+          <span class="stat-icon">✅</span>
+        </div>
+        <div class="stat-value" id="count-completed">0</div>
+      </button>
+    </section>
+
+    <!-- Форма добавления задачи -->
+    <section class="add-task-section">
+      <form id="todo-form" class="todo-form">
+        <div class="input-wrapper">
+          <input 
+            type="text" 
+            id="task-input" 
+            placeholder="Например: Сдать лабораторную №3 по JS..." 
+            autocomplete="off"
+          >
+          <span id="error-message" class="error-message">Введите текст задачи!</span>
+        </div>
+        <button type="submit" class="add-btn">
+          <span>+ Добавить</span>
+        </button>
+      </form>
+    </section>
+
+    <!-- Заголовок списка и текущий фильтр -->
+    <section class="list-section">
+      <div class="list-header">
+        <h2>Список предметов и лаб</h2>
+        <span class="counter-badge" id="counter-info">Осталось: 0 | Выполнено: 0</span>
+      </div>
+
+      <!-- Контейнер для динамического рендера списка -->
+      <ul id="todo-list" class="todo-list">
+        <!-- Задачи генерируются через script.js -->
+      </ul>
+
+      <!-- Заглушка, если список пуст -->
+      <div id="empty-state" class="empty-state hidden">
+        <div class="empty-icon">🎉</div>
+        <p>Задач нет! Можно отдохнуть или добавить новую.</p>
+      </div>
+    </section>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
