@@ -95,7 +95,7 @@ function addTodo(text) {
     completed: false
   };
 
-  todos.push(newTodo);
+  todos.unshift(newTodo);
   taskInput.value = '';
   render();
 }
