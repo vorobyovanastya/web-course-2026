@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Быки и коровы</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="game-container">
+    <h1>Быки и коровы</h1>
+    <p class="rules">Компьютер загадал 4-значное число из неповторяющихся цифр. Попробуйте угадать!</p>
+
+    <!-- Верхняя панель управления -->
+    <div class="controls-panel">
+      <button id="new-game-btn" class="btn btn-secondary">Новая игра</button>
+      <div class="attempts-counter">Попыток: <span id="attempts-count">0</span></div>
+    </div>
+
+    <!-- Форма ввода попытки -->
+    <form id="guess-form" class="guess-form">
+      <div class="input-group">
+        <input 
+          type="text" 
+          id="guess-input" 
+          placeholder="4 разные цифры (например, 1234)" 
+          maxlength="4"
+          autocomplete="off"
+        >
+        <button type="submit" id="submit-btn" class="btn btn-primary">Проверить</button>
+      </div>
+      <div id="error-message" class="error-message hidden"></div>
+    </form>
+
+    <!-- Сообщение о победе -->
+    <div id="win-message" class="win-message hidden"></div>
+
+    <!-- История попыток -->
+    <div class="history-section">
+      <h2>История ходов</h2>
+      <ul id="history-list" class="history-list"></ul>
+      <div id="empty-history" class="empty-history">Сделайте первую попытку!</div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
