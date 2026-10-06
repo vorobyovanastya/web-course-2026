@@ -1,11 +1,11 @@
-let sequence = [];          
-let playerStep = 0;         
-let isPlayingSequence = false; 
-let isGameActive = false;   
-let currentRunId = 0;       
+let sequence = [];
+let playerStep = 0;
+let isPlayingSequence = false;
+let isGameActive = false;
+let currentRunId = 0;
 
-const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-const frequencies = [261.63, 329.63, 392.00, 523.25]; // Ноты C4, E4, G4, C5
+let audioCtx = null;
+const frequencies = [261.63, 329.63, 392.00, 523.25];
 
 const sectors = document.querySelectorAll('.sector');
 const startBtn = document.getElementById('start-btn');
@@ -16,11 +16,18 @@ function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-function playSound(index) {
+function initAudio() {
+  if (!audioCtx) {
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  }
   if (audioCtx.state === 'suspended') {
     audioCtx.resume();
   }
+}
+
+function playSound(index) {
   try {
+    initAudio();
     const osc = audioCtx.createOscillator();
     const gain = audioCtx.createGain();
     osc.type = 'sine';
@@ -34,13 +41,12 @@ function playSound(index) {
 
     osc.start();
     osc.stop(audioCtx.currentTime + 0.4);
-  } catch (e) {
-    
-  }
+  } catch (e) {}
 }
 
 async function flashSector(index) {
   const sector = sectors[index];
+  if (!sector) return;
   sector.classList.add('active');
   playSound(index);
   await sleep(400);
@@ -48,12 +54,12 @@ async function flashSector(index) {
 }
 
 function startGame() {
-  currentRunId++; 
+  initAudio();
+  currentRunId++;
   sequence = [];
   playerStep = 0;
   isGameActive = true;
   startBtn.textContent = 'Заново';
-  
   nextRound();
 }
 
@@ -61,7 +67,7 @@ async function nextRound() {
   playerStep = 0;
   levelDisplay.textContent = sequence.length + 1;
   statusMessage.textContent = 'Слушайте последовательность...';
- 
+  
   const nextColor = Math.floor(Math.random() * 4);
   sequence.push(nextColor);
 
@@ -78,7 +84,7 @@ async function playSequence() {
     if (runId !== currentRunId) return;
 
     await flashSector(sequence[i]);
-    await sleep(200); 
+    await sleep(200);
   }
 
   if (runId !== currentRunId) return;
@@ -91,13 +97,16 @@ async function handleSectorClick(e) {
   if (!isGameActive || isPlayingSequence) return;
 
   const clickedIndex = parseInt(e.target.dataset.color);
+  if (isNaN(clickedIndex)) return;
+
   flashSector(clickedIndex);
+
   if (clickedIndex === sequence[playerStep]) {
     playerStep++;
 
     if (playerStep === sequence.length) {
       statusMessage.textContent = 'Отлично!';
-      isPlayingSequence = true; 
+      isPlayingSequence = true;
       await sleep(1000);
       nextRound();
     }
