@@ -43,11 +43,7 @@ function checkGuess() {
     cout++;
     counter.textContent = "Попыток: " + cout;
 
-    if (cout > 10) {
-    alert("Попытки закончились! Вы проиграли.");
-    userInput.disabled = true;
-    proverkaBt.disabled = true;
-    return;
+    
 }
 
     let bulls = 0; // быки
