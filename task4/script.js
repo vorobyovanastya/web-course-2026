@@ -1,135 +1,83 @@
-let secretCode = '';   // Загаданное число
-let history = [];      // Массив попыток
-let isGameOver = false;
+let number = '';
+let cout = 0;
 
-const guessInput = document.getElementById('guess-input');
-const submitBtn = document.getElementById('submit-btn');
-const errorMessage = document.getElementById('error-message');
-const winMessage = document.getElementById('win-message');
-const historyList = document.getElementById('history-list');
-const attemptsCount = document.getElementById('attempts-count');
+const userInpur = document.getElementById('user-input');
+const proverkaBt = document.getElementById('guess-btn');
+const newGame = document.getElementById('new-game');
+const counter = document.getElementById('counter');
+const list = document.getElementById('history-list');
 
-function generateSecretCode() {
-  let result = '';
-  while (result.length < 4) {
-    const randomDigit = Math.floor(Math.random() * 10).toString();
-    // Если цифры ещё нет в числе — добавляем её
-    if (!result.includes(randomDigit)) {
-      result += randomDigit;
+// Генерация случайного 4-значного числа с уникальными цифрами
+function secretNomber() {
+    number = '';
+    while (number.length < 4) {
+        let num = Math.floor(Math.random() * 10).toString();
+        // Чтобы первая цифра не была нулем и цифры не повторялись
+        if ((number.length > 0 || num !== '0') && number.indexOf(num) === -1) {
+            number += num;
+        }
     }
-  }
-  return result;
+    console.log("Загаданное число: " + number);
 }
 
-function validateInput(input) {
-  // Проверка длины
-  if (input.length !== 4) {
-    return 'Нужно ввести ровно 4 цифры!';
-  }
-  
-  // Проверка все ли символы — цифры
-  for (let i = 0; i < input.length; i++) {
-    if (isNaN(input[i]) || input[i] === ' ') {
-      return 'Вводите только цифры!';
+secretNomber();
+
+// Проверка попытки
+function checkGuess() {
+    let guess = userInpur.value;
+
+    if (guess.length !== 4) {
+        alert("Введите 4 цифры!");
+        return;
     }
-  }
 
-  // Проверка на повторяющиеся цифры
-  for (let i = 0; i < 4; i++) {
-    for (let j = i + 1; j < 4; j++) {
-      if (input[i] === input[j]) {
-        return 'Все цифры должны быть разными!';
-      }
+    // Проверяем, чтобы цифры у пользователя не повторялись
+    for (let i = 0; i < guess.length; i++) {
+        // Если символ встречается в строке еще где-то (индексы не равны)
+        if (guess.indexOf(guess[i]) !== guess.lastIndexOf(guess[i])) {
+            alert("Цифры не должны повторяться!");
+            return;
+        }
     }
-  }
 
-  return null; 
-}
+    cout++;
+    counter.textContent = "Попыток: " + cout;
 
-function calculateBullsAndCows(secret, guess) {
-  let bulls = 0;
-  let cows = 0;
+    let bulls = 0;
+    let cows = 0;
 
-  for (let i = 0; i < 4; i++) {
-    if (guess[i] === secret[i]) {
-      bulls++;
-    } else if (secret.includes(guess[i])) {
-      cows++;
+    for (let i = 0; i < 4; i++) {
+        if (guess[i] === number[i]) {
+            bulls++;
+        } else if (number.indexOf(guess[i]) !== -1) {
+            cows++;
+        }
     }
-  }
 
-  return { bulls, cows };
+    let listItem = document.createElement("li");
+
+    if (bulls === 4) {
+        listItem.textContent = "Победа! Число " + number + " за " + cout + " поп.";
+        userInpur.disabled = true;
+        proverkaBt.disabled = true;
+    } else {
+        listItem.textContent = guess + " — Быков: " + bulls + ", Коров: " + cows;
+    }
+
+    list.prepend(listItem);
+    userInpur.value = "";
 }
 
-function render() {
-  attemptsCount.textContent = history.length;
-  historyList.innerHTML = '';
-
-  history.forEach(item => {
-    const li = document.createElement('li');
-    li.className = 'history-item';
-    li.innerHTML = `
-      <span class="guess-val">${item.guess}</span>
-      <span class="result-val">${item.bulls} бык(а), ${item.cows} коров(ы)</span>
-    `;
-    historyList.appendChild(li);
-  });
-
-  if (isGameOver) {
-    guessInput.disabled = true;
-    submitBtn.disabled = true;
-    winMessage.classList.remove('hidden');
-    winMessage.textContent = `Победа! Угадано за ${history.length} попыток!`;
-  } else {
-    guessInput.disabled = false;
-    submitBtn.disabled = false;
-    winMessage.classList.add('hidden');
-  }
+// Новая игра
+function resetGame() {
+    secretNomber();
+    cout = 0;
+    counter.textContent = "Попыток: " + cout;
+    list.innerHTML = "";
+    userInpur.value = "";
+    userInpur.disabled = false;
+    proverkaBt.disabled = false;
 }
 
-// Запуск новой игры
-function initGame() {
-  secretCode = generateSecretCode();
-  history = [];
-  isGameOver = false;
-
-  console.log('Загаданное число:', secretCode);
-
-  errorMessage.classList.add('hidden');
-  guessInput.value = '';
-  render();
-}
-
-document.getElementById('guess-form').addEventListener('submit', (e) => {
-  e.preventDefault();
-
-  const userGuess = guessInput.value.trim();
-  const error = validateInput(userGuess);
-
-  if (error) {
-    errorMessage.textContent = error;
-    errorMessage.classList.remove('hidden');
-    return;
-  }
-
-  errorMessage.classList.add('hidden');
-
-  const result = calculateBullsAndCows(secretCode, userGuess);
-
-  history.push({
-    guess: userGuess,
-    bulls: result.bulls,
-    cows: result.cows
-  });
-
-  if (result.bulls === 4) {
-    isGameOver = true;
-  }
-
-  guessInput.value = '';
-  render();
-});
-
-document.getElementById('new-game-btn').addEventListener('click', initGame);
-
-initGame();
+proverkaBt.onclick = checkGuess;
+newGame.onclick = resetGame;
