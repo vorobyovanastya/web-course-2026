@@ -43,12 +43,16 @@ function checkGuess() {
     cout++;
     counter.textContent = "Попыток: " + cout;
 
-    
+    if (cout > 10) {
+    alert("Попытки закончились! Вы проиграли.");
+    userInput.disabled = true;
+    proverkaBt.disabled = true;
+    return;
 }
 
     let bulls = 0; // быки
     let cows = 0;  // коровы
-
+ 
     for (let i = 0; i < 4; i++) {
         if (numUser[i] === number[i]) {
             bulls++;
@@ -60,7 +64,7 @@ function checkGuess() {
     let listItem = document.createElement("li");
 
     if (bulls === 4) {
-        listItem.textContent = "Победа! Число " + number + " за " + cout + " поп.";
+        listItem.textContent = "Победа! Число " + number + " за " + cout + " попыток";
         userInput.disabled = true;
         proverkaBt.disabled = true;
     } else {
