@@ -1,32 +1,39 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Simon Game</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Игра «Симон говорит»</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="game-container">
-    <h1>Simon Says</h1>
 
-    <div class="score-board">
-      Уровень: <span id="level-display">0</span>
+    <div class="game-container">
+        <h1>Игра «Симон говорит»</h1>
+        
+        <div class="info-panel">
+            <p id="status-text">Нажмите «Старт», чтобы начать игру</p>
+            <p class="score-text">Уровень: <span id="level-counter">0</span></p>
+        </div>
+
+        <div class="simon-board">
+            <button class="pad" data-index="0" id="pad-0"></button>
+            <button class="pad" data-index="1" id="pad-1"></button>
+            <button class="pad" data-index="2" id="pad-2"></button>
+            <button class="pad" data-index="3" id="pad-3"></button>
+        </div>
+
+        <button id="start-btn" class="start-btn">Старт</button>
     </div>
 
-    <!-- Игровое поле из 4 секторов -->
-    <div class="simon-board">
-      <div class="sector green" data-color="0"></div>
-      <div class="sector red" data-color="1"></div>
-      <div class="sector yellow" data-color="2"></div>
-      <div class="sector blue" data-color="3"></div>
+    <div id="game-over-modal" class="modal hidden">
+        <div class="modal-content">
+            <h2>Игра окончена!</h2>
+            <p id="final-score">Вы дошли до уровня: 0</p>
+            <button id="restart-btn" class="start-btn">Играть снова</button>
+        </div>
     </div>
 
-    <button id="start-btn" class="btn">Старт</button>
-
-    <div id="status-message" class="status-message">Нажмите «Старт», чтобы начать игру!</div>
-  </div>
-
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
