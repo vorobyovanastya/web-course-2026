@@ -1,119 +1,140 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
 body {
-  background-color: #1e272e;
-  color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  padding: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f7f6;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
 }
 
 .game-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  background: #2d3436;
-  padding: 30px;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  max-width: 420px;
-  width: 100%;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    max-width: 350px;
+    width: 100%;
 }
 
 h1 {
-  font-size: 2rem;
-  letter-spacing: 2px;
-  color: #f5f6fa;
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #2c3e50;
+    font-size: 24px;
 }
 
-.score-board {
-  font-size: 1.3rem;
-  font-weight: bold;
-  color: #dcdde1;
+.info-panel {
+    margin-bottom: 15px;
+    font-size: 16px;
+    min-height: 45px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
+#status-text {
+    font-weight: 600;
+    color: #6c5ce7;
+    margin: 0 0 5px 0;
+}
+
+.score-text {
+    margin: 0;
+    color: #7f8c8d;
+}
 
 .simon-board {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  gap: 15px;
-  width: 280px;
-  height: 280px;
-  background-color: #0f1315;
-  padding: 15px;
-  border-radius: 50%; /* Делаем поле круглым */
-  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.8);
+    display: grid;
+    grid-template-columns: repeat(2, 110px);
+    grid-template-rows: repeat(2, 110px);
+    gap: 12px; 
+    justify-content: center;
+    margin-bottom: 25px;
 }
 
-.sector {
-  border-radius: 20px;
-  cursor: pointer;
-  opacity: 0.6;
-  transition: opacity 0.2s, transform 0.1s, filter 0.2s;
+.pad {
+    width: 110px;
+    height: 110px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: opacity 0.15s ease, transform 0.1s ease;
 }
 
-.sector.green {
-  background-color: #2ecc71;
-  border-top-left-radius: 100px;
+.pad:active:not(:disabled) {
+    transform: scale(0.95);
 }
 
-.sector.red {
-  background-color: #e74c3c;
-  border-top-right-radius: 100px;
+#pad-0 { background-color: #ff7675; } /* Красный */
+#pad-1 { background-color: #55efc4; } /* Зеленый */
+#pad-2 { background-color: #74b9ff; } /* Синий */
+#pad-3 { background-color: #ffeaa7; } /* Желтый */
+
+.pad.active {
+    opacity: 1;
+    transform: scale(1.04);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
 }
 
-.sector.yellow {
-  background-color: #f1c40f;
-  border-bottom-left-radius: 100px;
+.start-btn {
+    background-color: #6c5ce7;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s;
 }
 
-.sector.blue {
-  background-color: #3498db;
-  border-bottom-right-radius: 100px;
+.start-btn:hover {
+    background-color: #5849be;
 }
 
-.sector.active {
-  opacity: 1;
-  filter: brightness(1.4);
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+.start-btn:disabled {
+    background-color: #b2bec3;
+    cursor: not-allowed;
 }
 
-.sector:active {
-  transform: scale(0.96);
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.3s ease;
 }
 
-.btn {
-  padding: 12px 36px;
-  font-size: 1.1rem;
-  font-weight: bold;
-  color: #fff;
-  background-color: #0984e3;
-  border: none;
-  border-radius: 25px;
-  cursor: pointer;
-  transition: background-color 0.2s, transform 0.1s;
+.hidden {
+    display: none;
 }
 
-.btn:hover {
-  background-color: #74b9ff;
+.modal-content {
+    background-color: white;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    max-width: 280px;
+    width: 100%;
 }
 
-.btn:active {
-  transform: scale(0.95);
+.modal-content h2 {
+    margin-top: 0;
+    color: #2c3e50;
 }
 
-.status-message {
-  font-size: 1rem;
-  text-align: center;
-  min-height: 24px;
-  color: #a4b0be;
+.modal-content p {
+    color: #555;
+    margin-bottom: 20px;
 }
