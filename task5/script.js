@@ -1,44 +1,28 @@
 document.addEventListener('DOMContentLoaded', () => {
-    
     const pads = document.querySelectorAll('.pad');
     const startBtn = document.getElementById('start-btn');
     const statusText = document.getElementById('status-text');
     const levelCounter = document.getElementById('level-counter');
-    
-    
     const modal = document.getElementById('game-over-modal');
     const finalScore = document.getElementById('final-score');
     const restartBtn = document.getElementById('restart-btn');
 
-    
     let sequence = [];
     let playerIndex = 0;
     let isComputerTurn = true;
-    let activeTimeouts = []; 
 
-    function clearAllTimeouts() {
-        activeTimeouts.forEach(t => clearTimeout(t));
-        activeTimeouts = [];
-    }
-
-    startBtn.addEventListener('click', () => {
-        startGame();
-    });
-
-    
+    startBtn.addEventListener('click', startGame);
     restartBtn.addEventListener('click', () => {
-        modal.classList.add('hidden'); // Скрываем модалку
+        modal.classList.add('hidden');
         startGame();
     });
 
     function startGame() {
-        clearAllTimeouts();
         sequence = [];
         playerIndex = 0;
         levelCounter.textContent = '0';
         statusText.textContent = 'Игра началась!';
         startBtn.disabled = true;
-
         nextRound();
     }
 
@@ -55,41 +39,31 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function playSequence() {
-        let delay = 600;
-
         sequence.forEach((padIndex, i) => {
-            let showTimer = setTimeout(() => {
+            setTimeout(() => {
                 activatePad(padIndex);
-            }, delay * (i + 1));
-
-            activeTimeouts.push(showTimer);
+            }, 600 * (i + 1));
         });
 
-        let finishTimer = setTimeout(() => {
+        setTimeout(() => {
             isComputerTurn = false;
             statusText.textContent = 'Ваша очередь!';
-        }, delay * (sequence.length + 1));
-
-        activeTimeouts.push(finishTimer);
+        }, 600 * (sequence.length + 1));
     }
 
     function activatePad(index) {
         const pad = pads[index];
         pad.classList.add('active');
-        
-        let removeTimer = setTimeout(() => {
+        setTimeout(() => {
             pad.classList.remove('active');
         }, 350);
-
-        activeTimeouts.push(removeTimer);
     }
 
     pads.forEach(pad => {
         pad.addEventListener('click', (e) => {
-            if (isComputerTurn) return; 
+            if (isComputerTurn) return;
 
             const clickedIndex = parseInt(e.target.dataset.index);
-
             activatePad(clickedIndex);
 
             if (clickedIndex === sequence[playerIndex]) {
@@ -98,11 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (playerIndex === sequence.length) {
                     isComputerTurn = true;
                     statusText.textContent = 'Верно! Следующий раунд...';
-                    
-                    let nextTimer = setTimeout(() => {
-                        nextRound();
-                    }, 1000);
-                    activeTimeouts.push(nextTimer);
+                    setTimeout(nextRound, 1000);
                 }
             } else {
                 gameOver();
@@ -111,11 +81,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function gameOver() {
-        clearAllTimeouts();
         statusText.textContent = 'Игра окончена';
         startBtn.disabled = false;
         isComputerTurn = true;
-
         finalScore.textContent = `Вы дошли до уровня: ${sequence.length}`;
         modal.classList.remove('hidden');
     }
